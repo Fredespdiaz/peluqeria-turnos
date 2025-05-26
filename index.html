@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agenda de Turnos - Peluquería</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 15px;
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .turnos {
+      margin-top: 30px;
+    }
+    .turno {
+      padding: 10px;
+      background: #e9ecef;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Agenda de Turnos - Peluquería</h1>
+  <div class="container">
+    <form id="formTurno">
+      <label for="nombre">Nombre del cliente:</label>
+      <input type="text" id="nombre" required />
+
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" required />
+
+      <label for="hora">Hora:</label>
+      <input type="time" id="hora" required />
+
+      <label for="servicio">Servicio:</label>
+      <select id="servicio" required>
+        <option value="">-- Selecciona un servicio --</option>
+        <option value="Corte de pelo">Corte de pelo</option>
+        <option value="Coloración">Coloración</option>
+        <option value="Peinado">Peinado</option>
+        <option value="Tratamiento capilar">Tratamiento capilar</option>
+      </select>
+
+      <button type="submit">Registrar turno</button>
+    </form>
+
+    <div class="turnos" id="listaTurnos">
+      <h2>Turnos registrados</h2>
+      <!-- Aquí se agregan los turnos -->
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('formTurno');
+    const listaTurnos = document.getElementById('listaTurnos');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value;
+      const fecha = document.getElementById('fecha').value;
+      const hora = document.getElementById('hora').value;
+      const servicio = document.getElementById('servicio').value;
+
+      const turnoDiv = document.createElement('div');
+      turnoDiv.className = 'turno';
+      turnoDiv.innerHTML = `<strong>${nombre}</strong> tiene un turno para <em>${servicio}</em> el <strong>${fecha}</strong> a las <strong>${hora}</strong>.`;
+     
+      listaTurnos.appendChild(turnoDiv);
+
+      // Limpiar el formulario
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
